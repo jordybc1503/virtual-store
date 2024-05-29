@@ -8,7 +8,7 @@ export default function NavBar() {
         <a href="./index.html" className={styles["header-logo"]}>
           <img
             className={styles["header-logo-img"]}
-            src="/tiendamia-logo.svg"
+            src='../assets/tiendamia-logo.svg'
             width="218"
             alt="Logo store"
           />
