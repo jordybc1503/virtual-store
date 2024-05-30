@@ -11,7 +11,7 @@ function App() {
   const browserRouter = createBrowserRouter([
     { path: "/" , element: <Home /> },
     { path: "index.html", element: <Home /> },
-    { path: "/details.html", element: <Details /> },
+    { path: "/details.html/:id", element: <Details /> },
     { path: "/cart.html", element: <Cart /> }
 
   ]);
