@@ -4,7 +4,7 @@ export default function NavBar({ title, link }) {
   return (
     <>
       <li className={styles["nav-li"]}>
-        <a className={styles["nav-a"]} href={link}>
+        <a className={styles["nav-a"]} to={link}>
           {title}
         </a>
       </li>
