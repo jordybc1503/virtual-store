@@ -1,5 +1,5 @@
 import styles from './Checkout.module.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import truck from "../assets/truck.png";
 import plane from '../assets/plane.png';
 
@@ -8,31 +8,49 @@ export default function Checkout({ product }) {
     const [button, setButton] = useState(false);
     const units = useRef(1);
 
-    let productsInStorage: any[] = [];
-    !localStorage.getItem("cart")
-        ? localStorage.setItem("cart", JSON.stringify([]))
-        : (productsInStorage = JSON.parse(localStorage.getItem("cart") || "[]"));
-    const manageCart = () => {
-
-        let productsOnCart =  [];
-        
+    useEffect(() => {
+        let productsOnCart = [];
         if (localStorage.getItem("cart")) {
             productsOnCart = JSON.parse(localStorage.getItem("cart"));
-          } else {
+        } else {
+            localStorage.setItem("cart", JSON.stringify([]));
+        }
+        const one = productsOnCart.find((item) => item.id === product.id);
+        if (one) {
+            setQuantity(one.units);
+            setButton(true);
+        } else {
+            setQuantity(1);
+            setButton(false);
+        }
+
+    }, [product.id])
+
+
+
+
+
+    const manageCart = () => {
+
+        let productsOnCart = [];
+
+        if (localStorage.getItem("cart")) {
+            productsOnCart = JSON.parse(localStorage.getItem("cart"));
+        } else {
             [];
-          }
-        
-        const one = productsOnCart.find(each =>each.id === product.id);
-        
+        }
+
+        const one = productsOnCart.find(each => each.id === product.id);
+
         if (!one) {
             product.units = quantity;
             productsOnCart.push(product);
             setButton(true);
-          } else {
+        } else {
             productsOnCart = productsOnCart.filter((each) => each.id !== product.id);
             setButton(false);
-          }
-          localStorage.setItem("cart", JSON.stringify(productsOnCart));
+        }
+        localStorage.setItem("cart", JSON.stringify(productsOnCart));
 
     };
 
@@ -55,10 +73,9 @@ export default function Checkout({ product }) {
                     ><img src={truck}
                         alt="Truck"
                         /></span>
-                    <span className={styles["policy-desc"]}
-                    >Agrega el producto al carrito para conocer los costos de
-                        envío</span
-                    >
+                    <span className={styles["policy-desc"]}>Agrega el producto al carrito para conocer los costos de
+                        envío
+                    </span>
                 </li>
                 <li>
                     <span className={styles["policy-icon"]}
