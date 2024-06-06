@@ -1,6 +1,7 @@
 import styles from "./NavBar.module.css";
 import NavButton from "./NavButton";
 import { Link } from "react-router-dom";
+import logo from "../assets/tiendamia-logo.svg"; 
 
 export default function NavBar() {
   return (
@@ -9,7 +10,7 @@ export default function NavBar() {
         <Link to="/" className={styles["header-logo"]}>
           <img
             className={styles["header-logo-img"]}
-            src="..assets/tiendamia-logo.svg"
+            src={logo}
             width="218"
             alt="Logo store"
           />
