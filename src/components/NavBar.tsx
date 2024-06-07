@@ -3,7 +3,8 @@ import NavButton from "./NavButton";
 import { Link } from "react-router-dom";
 import logo from "../assets/tiendamia-logo.svg"; 
 
-export default function NavBar() {
+export default function NavBar({isHome = true}) {
+  
   return (
     <header>
       <div className={styles["header-container"]}>
@@ -50,13 +51,14 @@ export default function NavBar() {
           </li>
         </ul>
       </div>
-      <nav id="navbar">
-        <NavButton title="Ofertas" link="/" />
+      {isHome && (<nav id="navbar">
+        <NavButton title="Ofertas" link="/onsale" />
         <NavButton title="Cómo comprar" link="/" />
         <NavButton title="Costos y tarifas" link="/" />
         <NavButton title="Mis pedidos" link="/" />
         <NavButton title="Garantía" link="/" />
-      </nav>
+      </nav>)}
+      
     </header>
   );
 }

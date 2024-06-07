@@ -1,12 +1,13 @@
 import styles from "./NavButton.module.css";
+import { Link } from "react-router-dom";
 
 export default function NavBar({ title, link }) {
   return (
     <>
       <li className={styles["nav-li"]}>
-        <a className={styles["nav-a"]} to={link}>
+        <Link className={styles["nav-a"]} to={link}>
           {title}
-        </a>
+        </Link>
       </li>
     </>
   );

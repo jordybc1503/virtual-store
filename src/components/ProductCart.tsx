@@ -14,7 +14,10 @@ export default function ProducCard(props) {
                 <span className={styles["product-title"]}>{tittle}</span>
                 <span className={styles["product-description"]}>{color}</span>
                 <div className={styles["product-price-block"]}>
-                    <span className={styles["product-price"]}>{price}</span>
+                    <span className={styles["product-price"]}>{new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+}).format(price)}</span>
                     <span className={styles["product-discount"]}>50% Off</span>
                 </div>
                 <div className={styles["product-tax-policy"]}>
